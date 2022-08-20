@@ -1,0 +1,3 @@
+[submodule "Sakura/vendor/spdlog"]
+	path = Sakura/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

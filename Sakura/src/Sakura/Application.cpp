@@ -1,15 +1,24 @@
 #include "Application.h"
 #include <stdio.h>
 
-Sakura::Application::Application()
+namespace Sakura
 {
-}
+	Application::Application()
+		: m_Running(true)
+	{
 
-Sakura::Application::~Application()
-{
-}
+	}
 
-void Sakura::Application::Run()
-{
-	printf("Hello World!\n");
+	Application::~Application()
+	{
+	}
+
+	void Application::Run()
+	{
+		while (m_Running)
+		{
+		
+		}
+
+}
 }

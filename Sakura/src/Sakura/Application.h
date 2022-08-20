@@ -13,7 +13,7 @@ namespace Sakura
 		void Run();
 
 	private:
-
+		bool m_Running;
 	};
 
 	Application* CreateApplication();
