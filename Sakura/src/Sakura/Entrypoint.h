@@ -5,7 +5,6 @@ extern Sakura::Application* Sakura::CreateApplication();
 #ifdef SAKURA_PLATFORM_WINDOWS
 
 #include <Windows.h>
-#include <stdio.h>
 
 int APIENTRY WinMain(_In_     HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,

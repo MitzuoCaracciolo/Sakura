@@ -21,6 +21,9 @@ project "Sakura"
 	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputDir .. "/%{prj.name}")
 
+	pchheader "skpch.h"
+	pchsource "Sakura/src/skpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -29,6 +32,7 @@ project "Sakura"
 
 	includedirs
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 

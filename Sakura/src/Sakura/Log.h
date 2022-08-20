@@ -1,9 +1,7 @@
 #pragma once
 
 #include <memory>
-
-#include "Core.h"
-#include "spdlog/spdlog.h"
+#include <spdlog/spdlog.h>
 
 namespace Sakura
 {
