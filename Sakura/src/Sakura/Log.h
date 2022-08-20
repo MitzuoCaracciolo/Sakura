@@ -7,7 +7,7 @@
 
 namespace Sakura
 {
-	class SAKURA_API Log
+	class Log
 	{
 	public:
 		static void Init();

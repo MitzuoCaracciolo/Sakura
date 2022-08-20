@@ -4,7 +4,7 @@
 
 namespace Sakura
 {
-	class SAKURA_API Application
+	class Application
 	{
 	public:
 		Application();
