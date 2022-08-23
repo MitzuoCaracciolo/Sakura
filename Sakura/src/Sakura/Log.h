@@ -1,7 +1,10 @@
 #pragma once
 
 #include <memory>
+
+#pragma warning(push, 0)
 #include <spdlog/spdlog.h>
+#pragma warning(pop)
 
 namespace Sakura
 {

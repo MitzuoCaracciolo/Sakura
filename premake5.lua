@@ -26,8 +26,11 @@ project "Sakura"
 
 	files
 	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/Sakura.h",
+		"%{prj.name}/src/skpch.h",
+		"%{prj.name}/src/skpch.cpp",
+		"%{prj.name}/src/Sakura/**.h",
+		"%{prj.name}/src/Sakura/**.cpp"
 	}
 
 	includedirs
@@ -36,12 +39,25 @@ project "Sakura"
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
+	links
+	{
+		"d3d11"
+	}
+
 	filter "system:windows"
 		systemversion "latest"
 
 		defines
 		{
 			"SAKURA_PLATFORM_WINDOWS"
+		}
+
+		files
+		{
+			"%{prj.name}/src/Platform/Windows/**.h",
+			"%{prj.name}/src/Platform/Windows/**.cpp",
+			"%{prj.name}/src/Platform/DirectX/**.h",
+			"%{prj.name}/src/Platform/DirectX/**.cpp"
 		}
 
 project "Sandbox"

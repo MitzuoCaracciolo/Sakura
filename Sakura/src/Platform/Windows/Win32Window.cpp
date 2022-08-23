@@ -39,6 +39,13 @@ namespace Sakura
 			0, 0, instance, this);
 
 		ShowWindow(m_Handle, SW_SHOWDEFAULT);
+
+		GraphicsSpecification graphicsSpec = { };
+		graphicsSpec.WindowHandle = m_Handle;
+		graphicsSpec.Width = m_Spec.Width;
+		graphicsSpec.Height = m_Spec.Height;
+
+		m_Context = GraphicsContext::Create(graphicsSpec);
 	}
 
 	Sakura::Win32Window::~Win32Window()
@@ -53,12 +60,14 @@ namespace Sakura
 			if (Message.message == WM_QUIT)
 			{
 				WindowCloseEvent e;
-				m_EventCallback(e);
+				m_Spec.EventCallback(e);
 			}
 
 			TranslateMessage(&Message);
 			DispatchMessage(&Message);
 		}
+
+		m_Context->SwapBackBuffer();
 	}
 
 	LRESULT Sakura::Win32Window::WindowCallback(HWND Window, UINT Message, WPARAM wParam, LPARAM lParam)
@@ -75,7 +84,7 @@ namespace Sakura
 
 		case WM_SIZE:
 		{
-			m_Spec.Width = (uint32)LOWORD(lParam);
+			m_Spec.Width  = (uint32)LOWORD(lParam);
 			m_Spec.Height = (uint32)HIWORD(lParam);
 
 			//if (m_Context != nullptr && wParam != SIZE_MINIMIZED)

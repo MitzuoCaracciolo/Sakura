@@ -8,9 +8,9 @@ namespace Sakura
 	{
 		WindowSpecification spec = { };
 		spec.Title = "Sakura Engine";
+		spec.EventCallback = SAKURA_BIND_EVENT_FN(Application::OnEvent);
 
 		m_Window = Window::Create(spec);
-		m_Window->SetEventCallback(SAKURA_BIND_EVENT_FN(Application::OnEvent));
 	}
 
 	Application::~Application()
@@ -21,6 +21,8 @@ namespace Sakura
 	{
 		while (m_Running)
 		{
+			m_Window->GetContext().ClearBackBuffer(0.1f, 0.105f, 0.11f);
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
