@@ -1,11 +1,14 @@
 #pragma once
 
-#include "Core.h"
+#include "Sakura/Core.h"
+#include "Sakura/Window.h"
+
 #include "Sakura/Layer.h"
 #include "Sakura/LayerStack.h"
 
 #include "Sakura/Events/Event.h"
 #include "Events/WindowEvents.h"
+
 
 namespace Sakura
 {
@@ -28,6 +31,7 @@ namespace Sakura
 	private:
 		bool m_Running;
 		LayerStack m_LayerStack;
+		std::unique_ptr<Window> m_Window;
 	};
 
 	Application* CreateApplication();
