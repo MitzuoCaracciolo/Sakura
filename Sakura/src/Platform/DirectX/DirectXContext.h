@@ -27,6 +27,7 @@ namespace Sakura
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_BackBuffer;
 
 		friend class DirectXVertexBuffer;
+		friend class DirectXIndexBuffer;
 	};
 }
 
