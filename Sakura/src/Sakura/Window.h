@@ -2,7 +2,7 @@
 
 #include "Sakura/Core.h"
 #include "Sakura/Events/Event.h"
-#include "Sakura/GraphicsContext.h"
+#include "Sakura/Renderer/GraphicsContext.h"
 
 #include <string>
 #include <memory>

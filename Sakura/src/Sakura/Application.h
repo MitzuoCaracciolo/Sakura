@@ -34,6 +34,7 @@ namespace Sakura
 		std::unique_ptr<Window> m_Window;
 	};
 
+	// Client-Side
 	Application* CreateApplication();
 }
 

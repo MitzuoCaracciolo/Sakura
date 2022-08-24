@@ -19,16 +19,16 @@ namespace Sakura
 
 	void Application::Run()
 	{
+		auto& graphics = m_Window->GetContext();
 		while (m_Running)
 		{
-			m_Window->GetContext().ClearBackBuffer(0.1f, 0.105f, 0.11f);
+			graphics.ClearBackBuffer(0.1f, 0.105f, 0.11f);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_Window->OnUpdate();
 		}
-
 	}
 
 	void Application::PushLayer(Layer* layer)
