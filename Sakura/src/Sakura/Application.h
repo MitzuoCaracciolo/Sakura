@@ -19,10 +19,6 @@ namespace Sakura
 		~Application();
 
 		void Run();
-
-		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* overlay);
-
 		void OnEvent(Event& e);
 
 	private:

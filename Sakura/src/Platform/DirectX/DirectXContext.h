@@ -28,6 +28,7 @@ namespace Sakura
 
 		friend class DirectXVertexBuffer;
 		friend class DirectXIndexBuffer;
+		friend class DirectXShader;
 	};
 }
 

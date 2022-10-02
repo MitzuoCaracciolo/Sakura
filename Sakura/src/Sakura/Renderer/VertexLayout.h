@@ -8,16 +8,15 @@ namespace Sakura
 {
 	enum class LayoutType
 	{
-		None = 0, Position2D, Position3D, Color3D
+		None = 0, Float2D, Float3D
 	};
 
 	static uint32 LayoutTypeSize(LayoutType type)
 	{
 		switch (type)
 		{
-		case LayoutType::Position2D: return sizeof(float) * 2;
-		case LayoutType::Position3D: return sizeof(float) * 3;
-		case LayoutType::Color3D: return sizeof(float) * 3;
+		case LayoutType::Float2D: return sizeof(float) * 2;
+		case LayoutType::Float3D: return sizeof(float) * 3;
 		}
 
 		return 0;
@@ -25,12 +24,12 @@ namespace Sakura
 
 	struct VertexLayoutElement
 	{
-		const char* Name;
+		std::string Name;
 		LayoutType Type;
 		uint32 Size;
 		uint32 Offset;
 
-		VertexLayoutElement(const char* name, LayoutType type)
+		VertexLayoutElement(std::string name, LayoutType type)
 			: Name(name), Type(type), Size(LayoutTypeSize(type)), Offset(0)
 		{}
 	};
@@ -38,6 +37,10 @@ namespace Sakura
 	class VertexLayout
 	{
 	public:
+		VertexLayout()
+			: m_Stride(0)
+		{ }
+			
 		VertexLayout(const std::initializer_list<VertexLayoutElement>& elements)
 			: m_Elements(elements)
 		{
@@ -49,6 +52,15 @@ namespace Sakura
 				offset += element.Size;
 				m_Stride += element.Size;
 			}
+		}
+
+		void PushElement(std::string name, LayoutType type)
+		{
+			VertexLayoutElement element(name, type);
+
+			element.Offset = m_Stride;
+			m_Stride += element.Size;
+			m_Elements.emplace_back(element);
 		}
 
 		std::vector<VertexLayoutElement>& GetElements() { return m_Elements; }

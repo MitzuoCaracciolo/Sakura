@@ -17,7 +17,9 @@ namespace Sakura
 		virtual void Unbind() override;
 
 		virtual void SetData(const void* data, uint32 byteSize) override;
+
 		virtual void SetLayout(VertexLayout& layout) override;
+		virtual VertexLayout& GetLayout() override { return m_Spec.Layout; }
 
 	private:
 		VertexBufferSpecification m_Spec;
