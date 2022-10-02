@@ -7,8 +7,7 @@
 
 namespace Sakura
 {
-
-	std::shared_ptr<Shader> Create(const ShaderSpecification& spec, const GraphicsContext& context)
+	std::shared_ptr<Shader> Shader::Create(const ShaderSpecification& spec, const GraphicsContext& context)
 	{
 		return std::make_shared<DirectXShader>(spec, dynamic_cast<const DirectXContext&>(context));
 	}
@@ -20,7 +19,7 @@ namespace Sakura
 
         Microsoft::WRL::ComPtr<ID3DBlob> vBlob;
         std::wstring vShaderFilepath = converter.from_bytes(m_Spec.vShaderFilepath);
-        HRESULT hr = CompileShader(vShaderFilepath.c_str(), "main", nullptr, vBlob.GetAddressOf());
+        HRESULT hr = CompileShader(vShaderFilepath.c_str(), "main", "vs_4_0_level_9_1", vBlob.GetAddressOf());
         if (FAILED(hr))
         {
             SAKURA_CORE_ERROR("Failed compiling Vertex Shader %08X\n", hr);
@@ -29,7 +28,7 @@ namespace Sakura
 
         Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
         std::wstring pShaderFilepath = converter.from_bytes(m_Spec.pShaderFilepath);
-        hr = CompileShader(pShaderFilepath.c_str(), "main", nullptr, pBlob.GetAddressOf());
+        hr = CompileShader(pShaderFilepath.c_str(), "main", "ps_4_0_level_9_1", pBlob.GetAddressOf());
         if (FAILED(hr))
         {
             SAKURA_CORE_ERROR("Failed compiling Pixel Shader %08X\n", hr);

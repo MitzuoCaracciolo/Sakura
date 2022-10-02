@@ -21,10 +21,10 @@ namespace Sakura
 		void Run();
 		void OnEvent(Event& e);
 
-	private:
+	protected:
 		bool OnWindowClose(WindowCloseEvent& e);
 
-	private:
+	protected:
 		bool m_Running;
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;

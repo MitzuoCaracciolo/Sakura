@@ -20,6 +20,9 @@ namespace Sakura
 
 		virtual void ClearBackBuffer(float red, float green, float blue) = 0;
 		virtual void SwapBackBuffer() = 0;
+		virtual void SetRenderTarget() = 0;
+		virtual void SetPrimitiveTopology() = 0;
+		virtual void Draw(uint16 count) = 0;
 
 		static std::unique_ptr<GraphicsContext> Create(const GraphicsSpecification& spec);
 	};

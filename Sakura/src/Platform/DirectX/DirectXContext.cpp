@@ -60,4 +60,19 @@ namespace Sakura
 		m_DeviceContext->OMSetRenderTargets(1, m_BackBuffer.GetAddressOf(), 0);
 		m_SwapChain->Present(0, 0);
 	}
+
+	void DirectXContext::SetRenderTarget()
+	{
+		m_DeviceContext->OMSetRenderTargets(1, m_BackBuffer.GetAddressOf(), 0);
+	}
+
+	void DirectXContext::SetPrimitiveTopology()
+	{
+		m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	}
+
+	void DirectXContext::Draw(uint16 count)
+	{
+		m_DeviceContext->DrawIndexed(count, 0, 0);
+	}
 }

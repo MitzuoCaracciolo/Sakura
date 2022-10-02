@@ -14,8 +14,11 @@ namespace Sakura
 		DirectXContext(const GraphicsSpecification& spec);
 		virtual ~DirectXContext();
 
-		virtual void ClearBackBuffer(float red, float green, float blue);
-		virtual void SwapBackBuffer();
+		virtual void ClearBackBuffer(float red, float green, float blue) override;
+		virtual void SwapBackBuffer() override;
+		virtual void SetRenderTarget() override;
+		virtual void SetPrimitiveTopology() override;
+		virtual void Draw(uint16 count) override;
 
 	private:
 		uint32 m_ViewportWidth;

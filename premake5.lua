@@ -41,7 +41,9 @@ project "Sakura"
 
 	links
 	{
-		
+		"d3d11.lib",
+		"d3dcompiler.lib",
+		"dxguid.lib"
 	}
 
 	filter "system:windows"
@@ -58,11 +60,6 @@ project "Sakura"
 			"%{prj.name}/src/Platform/Windows/**.cpp",
 			"%{prj.name}/src/Platform/DirectX/**.h",
 			"%{prj.name}/src/Platform/DirectX/**.cpp"
-		}
-
-		links
-		{
-			"d3d11", "d3dcompiler"
 		}
 
 project "Sandbox"
