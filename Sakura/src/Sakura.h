@@ -8,6 +8,7 @@
 #include "Sakura/Renderer/GraphicsContext.h"
 #include "Sakura/Renderer/VertexBuffer.h"
 #include "Sakura/Renderer/IndexBuffer.h"
+#include "Sakura/Renderer/ConstantBuffer.h"
 #include "Sakura/Renderer/Shader.h"
 
 #include "Sakura/Application.h"

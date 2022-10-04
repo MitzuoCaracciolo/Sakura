@@ -19,6 +19,13 @@ void TestLayer::OnAttach()
 		2, 3, 0
 	};
 
+	float model[4][4] = {
+		{ 1.0f, 0.0f, 0.0f, 0.5f },
+		{ 0.0f, 1.0f, 0.0f, 0.5f },
+		{ 0.0f, 0.0f, 1.0f, 0.0f },
+		{ 0.0f, 0.0f, 0.0f, 1.0f } 
+	};
+
 	Sakura::VertexBufferSpecification vBufferSpec;
 	vBufferSpec.Data = vertices;
 	vBufferSpec.Size = sizeof(vertices);
@@ -31,6 +38,13 @@ void TestLayer::OnAttach()
 	iBufferSpec.Count = std::size(indices);
 
 	m_IndexBuffer = Sakura::IndexBuffer::Create(iBufferSpec, m_Context);
+
+	Sakura::ConstantBufferSpecification cBufferSpec;
+	cBufferSpec.Data = model;
+	cBufferSpec.Size = sizeof(model);
+	cBufferSpec.Slot = 0;
+
+	m_ConstantBuffer = Sakura::ConstantBuffer::Create(cBufferSpec, m_Context);
 
 	Sakura::ShaderSpecification shaderSpec;
 	shaderSpec.vShaderFilepath = "assets\\shaders\\VertexShader.hlsl";
@@ -49,6 +63,7 @@ void TestLayer::OnUpdate()
 
 	m_VertexBuffer->Bind();
 	m_IndexBuffer->Bind();
+	m_ConstantBuffer->Bind();
 	m_Shader->Bind();
 
 	m_Context.SetRenderTarget();

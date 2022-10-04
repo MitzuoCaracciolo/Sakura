@@ -1,4 +1,9 @@
+cbuffer uniformData
+{
+	row_major float4x4 modelTransform;
+};
+
 float4 main( float2 pos : POSITION ) : SV_POSITION
 {
-	return float4(pos, 0.0f, 1.0f);
+	return mul(modelTransform, float4(pos, 0.0f, 1.0f));
 }
