@@ -8,8 +8,7 @@ class Sandbox : public Sakura::Application
 public:
 	Sandbox()
 	{
-		TestLayer* layer = new TestLayer(m_Window->GetContext());
-		m_LayerStack.PushLayer(layer);
+		m_LayerStack.PushLayer<TestLayer>(m_Window->GetContext());
 	}
 
 	~Sandbox()

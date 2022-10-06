@@ -21,7 +21,7 @@ namespace Sakura
 		void Run();
 		void OnEvent(Event& e);
 
-	protected:
+	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
 	protected:

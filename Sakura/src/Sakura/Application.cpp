@@ -24,7 +24,7 @@ namespace Sakura
 		{
 			graphics.ClearBackBuffer(0.1f, 0.105f, 0.11f);
 
-			for (Layer* layer : m_LayerStack)
+			for (const auto& layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_Window->OnUpdate();

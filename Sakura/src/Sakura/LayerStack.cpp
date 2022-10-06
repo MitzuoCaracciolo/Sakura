@@ -1,45 +1,16 @@
 #include "skpch.h"
 #include "LayerStack.h"
 
-Sakura::LayerStack::~LayerStack()
-{
-	for (Layer* layer : m_Layers)
-	{
-		layer->OnDetach();
-		delete layer;
-	}
-}
 
-void Sakura::LayerStack::PushLayer(Layer* layer)
+void Sakura::LayerStack::PushLayer(std::unique_ptr<Layer> layer)
 {
-	m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
-	m_LayerInsertIndex++;
 	layer->OnAttach();
+	m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, std::move(layer));
+	m_LayerInsertIndex++;
 }
 
-void Sakura::LayerStack::PushOverlay(Layer* overlay)
+void Sakura::LayerStack::PushOverlay(std::unique_ptr<Layer> overlay)
 {
-	m_Layers.emplace_back(overlay);
 	overlay->OnAttach();
-}
-
-void Sakura::LayerStack::PopLayer(Layer* layer)
-{
-	auto it = std::find(m_Layers.begin(), m_Layers.begin() + m_LayerInsertIndex, layer);
-	if (it != m_Layers.begin() + m_LayerInsertIndex)
-	{
-		m_Layers.erase(it);
-		m_LayerInsertIndex--;
-		layer->OnDetach();
-	}
-}
-
-void Sakura::LayerStack::PopOverlay(Layer* overlay)
-{
-	auto it = std::find(m_Layers.begin() + m_LayerInsertIndex, m_Layers.end(), overlay);
-	if (it != m_Layers.end())
-	{
-		m_Layers.erase(it);
-		overlay->OnDetach();
-	}
+	m_Layers.emplace_back(std::move(overlay));
 }
