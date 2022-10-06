@@ -2,7 +2,7 @@
 
 #include "Sakura/Core.h"
 #include "Sakura/Renderer/VertexLayout.h"
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 
 #include <memory>
 
@@ -26,7 +26,7 @@ namespace Sakura
 		virtual const VertexLayout& GetLayout() const = 0;
 		virtual void SetLayout(VertexLayout& layout) = 0;
 
-		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, GraphicsContext& context);
+		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, RendererContext& context);
 	};
 }
 

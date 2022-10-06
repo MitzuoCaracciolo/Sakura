@@ -2,7 +2,7 @@
 
 #include "Sakura/Core.h"
 #include "Sakura/Events/Event.h"
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 
 #include <string>
 #include <memory>
@@ -29,10 +29,9 @@ namespace Sakura
 		virtual uint32 GetWidth() const = 0;
 		virtual uint32 GetHeight() const = 0;
 
-		virtual const GraphicsContext& GetContext() const = 0;
-		virtual GraphicsContext& GetContext() = 0;
+		virtual RendererContext& GetContext() = 0;
 
-		virtual void* GetNativeWindow() const = 0;
+		virtual void* GetNativeWindow() = 0;
 
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 

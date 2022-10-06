@@ -3,7 +3,7 @@
 
 namespace Sakura
 {
-	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, GraphicsContext& context)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, RendererContext& context)
 	{
 		return std::make_shared<DirectXVertexBuffer>(spec, dynamic_cast<DirectXContext&>(context));
 	}

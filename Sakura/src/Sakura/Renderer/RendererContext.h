@@ -6,17 +6,17 @@
 
 namespace Sakura
 {
-	struct GraphicsSpecification
+	struct RendererContextSpecification
 	{
 		void* WindowHandle;
 		uint32 Width;
 		uint32 Height;
 	};
 
-	class GraphicsContext
+	class RendererContext
 	{
 	public:
-		virtual ~GraphicsContext() = default;
+		virtual ~RendererContext() = default;
 
 		virtual void ClearBackBuffer(float red, float green, float blue) = 0;
 		virtual void SwapBackBuffer() = 0;
@@ -24,7 +24,7 @@ namespace Sakura
 		virtual void SetPrimitiveTopology() = 0;
 		virtual void Draw(uint16 count) = 0;
 
-		static std::unique_ptr<GraphicsContext> Create(const GraphicsSpecification& spec);
+		static std::unique_ptr<RendererContext> Create(const RendererContextSpecification& spec);
 	};
 }
 

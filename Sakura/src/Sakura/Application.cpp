@@ -45,6 +45,18 @@ namespace Sakura
 			(*it)->OnEvent(e);
 		}
 	}
+	void Application::PushLayer(std::unique_ptr<Layer> layer)
+	{
+		layer->OnAttach();
+		m_LayerStack.PushLayer(std::move(layer));
+	}
+
+	void Application::PushOverlay(std::unique_ptr<Layer> overlay)
+	{
+		overlay->OnAttach();
+		m_LayerStack.PushOverlay(std::move(overlay));
+	}
+
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;

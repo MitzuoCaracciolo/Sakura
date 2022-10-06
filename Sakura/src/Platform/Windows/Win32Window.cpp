@@ -40,12 +40,12 @@ namespace Sakura
 
 		ShowWindow(m_Handle, SW_SHOWDEFAULT);
 
-		GraphicsSpecification graphicsSpec = { };
-		graphicsSpec.WindowHandle = m_Handle;
-		graphicsSpec.Width = m_Spec.Width;
-		graphicsSpec.Height = m_Spec.Height;
+		RendererContextSpecification rendererSpec = { };
+		rendererSpec.WindowHandle = m_Handle;
+		rendererSpec.Width = m_Spec.Width;
+		rendererSpec.Height = m_Spec.Height;
 
-		m_Context = GraphicsContext::Create(graphicsSpec);
+		m_Context = RendererContext::Create(rendererSpec);
 	}
 
 	Sakura::Win32Window::~Win32Window()

@@ -3,7 +3,7 @@
 
 namespace Sakura
 {
-	std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(const ConstantBufferSpecification& spec, GraphicsContext& context)
+	std::shared_ptr<ConstantBuffer> ConstantBuffer::Create(const ConstantBufferSpecification& spec, RendererContext& context)
 	{
 		return std::make_shared<DirectXConstantBuffer>(spec, dynamic_cast<DirectXContext&>(context));
 	}

@@ -7,7 +7,7 @@
 
 namespace Sakura
 {
-	std::shared_ptr<Shader> Shader::Create(const ShaderSpecification& spec, GraphicsContext& context)
+	std::shared_ptr<Shader> Shader::Create(const ShaderSpecification& spec, RendererContext& context)
 	{
 		return std::make_shared<DirectXShader>(spec, dynamic_cast<DirectXContext&>(context));
 	}

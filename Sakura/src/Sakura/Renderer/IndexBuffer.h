@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Sakura/Core.h"
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 
 namespace Sakura
 {
@@ -21,7 +21,7 @@ namespace Sakura
 
 		virtual uint16 GetCount() const = 0;
 
-		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, GraphicsContext& context);
+		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, RendererContext& context);
 	};
 
 }

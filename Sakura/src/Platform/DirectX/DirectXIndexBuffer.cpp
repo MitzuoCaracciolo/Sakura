@@ -3,7 +3,7 @@
 
 namespace Sakura
 {
-	std::shared_ptr<IndexBuffer> IndexBuffer::Create(const IndexBufferSpecification& spec, GraphicsContext& context)
+	std::shared_ptr<IndexBuffer> IndexBuffer::Create(const IndexBufferSpecification& spec, RendererContext& context)
 	{
 		return std::make_shared<DirectXIndexBuffer>(spec, dynamic_cast<DirectXContext&>(context));
 	}

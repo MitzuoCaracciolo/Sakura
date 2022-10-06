@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 
 #include <Windows.h>
 #include <d3d11.h>
@@ -8,10 +8,10 @@
 
 namespace Sakura
 {
-	class DirectXContext : public GraphicsContext
+	class DirectXContext : public RendererContext
 	{
 	public:
-		DirectXContext(const GraphicsSpecification& spec);
+		DirectXContext(const RendererContextSpecification& spec);
 		virtual ~DirectXContext();
 
 		virtual void ClearBackBuffer(float red, float green, float blue) override;

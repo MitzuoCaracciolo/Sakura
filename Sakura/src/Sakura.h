@@ -5,7 +5,7 @@
 
 #include "Sakura/Events/Event.h"
 
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 #include "Sakura/Renderer/VertexBuffer.h"
 #include "Sakura/Renderer/IndexBuffer.h"
 #include "Sakura/Renderer/ConstantBuffer.h"

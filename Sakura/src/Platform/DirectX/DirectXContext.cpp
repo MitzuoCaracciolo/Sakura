@@ -3,12 +3,12 @@
 
 namespace Sakura
 {
-	std::unique_ptr<GraphicsContext> GraphicsContext::Create(const GraphicsSpecification& spec)
+	std::unique_ptr<RendererContext> RendererContext::Create(const RendererContextSpecification& spec)
 	{
 		return std::make_unique<DirectXContext>(spec);
 	}
 
-	DirectXContext::DirectXContext(const GraphicsSpecification& spec)
+	DirectXContext::DirectXContext(const RendererContextSpecification& spec)
 		: m_ViewportWidth(spec.Width), m_ViewportHeight(spec.Height)
 	{
 		DXGI_SWAP_CHAIN_DESC SwapChainDescription = { };

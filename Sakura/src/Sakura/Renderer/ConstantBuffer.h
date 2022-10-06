@@ -1,6 +1,6 @@
 #pragma once
 #include "Sakura/Core.h"
-#include "Sakura/Renderer/GraphicsContext.h"
+#include "Sakura/Renderer/RendererContext.h"
 
 #include <memory>
 
@@ -26,6 +26,6 @@ namespace Sakura
 
 		virtual uint32 GetSlot() const = 0;
 
-		static std::shared_ptr<ConstantBuffer> Create(const ConstantBufferSpecification& spec, GraphicsContext& context);
+		static std::shared_ptr<ConstantBuffer> Create(const ConstantBufferSpecification& spec, RendererContext& context);
 	};
 }
