@@ -29,11 +29,12 @@ namespace Sakura
 		virtual uint32 GetWidth() const = 0;
 		virtual uint32 GetHeight() const = 0;
 
-		virtual GraphicsContext& GetContext() const = 0;
-
-		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+		virtual const GraphicsContext& GetContext() const = 0;
+		virtual GraphicsContext& GetContext() = 0;
 
 		virtual void* GetNativeWindow() const = 0;
+
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 
 		static std::unique_ptr<Window> Create(const WindowSpecification& spec);
 	};

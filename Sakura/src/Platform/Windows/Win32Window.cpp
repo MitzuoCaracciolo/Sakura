@@ -66,8 +66,6 @@ namespace Sakura
 			TranslateMessage(&Message);
 			DispatchMessage(&Message);
 		}
-
-		m_Context->SwapBackBuffer();
 	}
 
 	LRESULT Sakura::Win32Window::WindowCallback(HWND Window, UINT Message, WPARAM wParam, LPARAM lParam)

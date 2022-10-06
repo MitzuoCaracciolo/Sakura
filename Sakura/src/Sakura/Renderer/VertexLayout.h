@@ -64,7 +64,7 @@ namespace Sakura
 		}
 
 		std::vector<VertexLayoutElement>& GetElements() { return m_Elements; }
-		uint32 GetStride() { return m_Stride; }
+		uint32 GetStride() const { return m_Stride; }
 
 		std::vector<VertexLayoutElement>::iterator begin() { return m_Elements.begin(); }
 		std::vector<VertexLayoutElement>::iterator end() { return m_Elements.end(); }

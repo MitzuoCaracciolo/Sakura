@@ -6,11 +6,11 @@ namespace Sakura
 	Application::Application()
 		: m_Running(true)
 	{
-		WindowSpecification spec = { };
-		spec.Title = "Sakura Engine";
-		spec.EventCallback = SAKURA_BIND_EVENT_FN(Application::OnEvent);
+		WindowSpecification windowSpec = { };
+		windowSpec.Title = "Sakura Engine";
+		windowSpec.EventCallback = SAKURA_BIND_EVENT_FN(Application::OnEvent);
 
-		m_Window = Window::Create(spec);
+		m_Window = Window::Create(windowSpec);
 	}
 
 	Application::~Application()
@@ -24,10 +24,12 @@ namespace Sakura
 		{
 			graphics.ClearBackBuffer(0.1f, 0.105f, 0.11f);
 
+			m_Window->OnUpdate();
+
 			for (const auto& layer : m_LayerStack)
 				layer->OnUpdate();
 
-			m_Window->OnUpdate();
+			graphics.SwapBackBuffer();
 		}
 	}
 

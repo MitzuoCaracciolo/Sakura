@@ -3,12 +3,12 @@
 
 namespace Sakura
 {
-	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, const GraphicsContext& context)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, GraphicsContext& context)
 	{
-		return std::make_shared<DirectXVertexBuffer>(spec, dynamic_cast<const DirectXContext&>(context));
+		return std::make_shared<DirectXVertexBuffer>(spec, dynamic_cast<DirectXContext&>(context));
 	}
 
-	DirectXVertexBuffer::DirectXVertexBuffer(const VertexBufferSpecification& spec, const DirectXContext& context)
+	DirectXVertexBuffer::DirectXVertexBuffer(const VertexBufferSpecification& spec, DirectXContext& context)
 		: m_Spec(spec), m_Context(context)
 	{
 		D3D11_BUFFER_DESC VertexBufferDesc = { };
@@ -23,7 +23,7 @@ namespace Sakura
 		VertexData.SysMemPitch = 0;
 		VertexData.SysMemSlicePitch = 0;
 
-		context.m_Device->CreateBuffer(&VertexBufferDesc, &VertexData, &m_Buffer);
+		m_Context.m_Device->CreateBuffer(&VertexBufferDesc, &VertexData, &m_Buffer);
 	}
 
 	void DirectXVertexBuffer::Bind()
@@ -35,12 +35,6 @@ namespace Sakura
 
 	void DirectXVertexBuffer::Unbind()
 	{
-	}
-
-	void DirectXVertexBuffer::SetData(const void* data, uint32 size)
-	{
-		memcpy(m_Spec.Data, data, size);
-		m_Spec.Size = size;
 	}
 
 	void DirectXVertexBuffer::SetLayout(VertexLayout& layout)

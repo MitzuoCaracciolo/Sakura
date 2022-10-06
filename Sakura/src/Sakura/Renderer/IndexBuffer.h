@@ -19,9 +19,9 @@ namespace Sakura
 		virtual void Bind() = 0;
 		virtual void Unbind() = 0;
 
-		virtual uint16 GetCount() = 0;
+		virtual uint16 GetCount() const = 0;
 
-		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, const GraphicsContext& context);
+		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, GraphicsContext& context);
 	};
 
 }

@@ -17,11 +17,12 @@ namespace Sakura
 		virtual uint32 GetWidth() const override { return m_Spec.Width; }
 		virtual uint32 GetHeight() const override { return m_Spec.Height; }
 
-		virtual GraphicsContext& GetContext() const override { return *m_Context.get(); }
-
-		virtual void SetEventCallback(const EventCallbackFn& callback) override { m_EventCallback = callback; }
+		virtual const GraphicsContext& GetContext() const override { return *m_Context.get(); }
+		virtual GraphicsContext& GetContext() override { return *m_Context.get(); }
 
 		virtual void* GetNativeWindow() const override { return (void*)m_Handle; }
+
+		virtual void SetEventCallback(const EventCallbackFn& callback) override { m_EventCallback = callback; }
 
 	private:
 		LRESULT WindowCallback(HWND Window, UINT Message, WPARAM wParam, LPARAM lParam);

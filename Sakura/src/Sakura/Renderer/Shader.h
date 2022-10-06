@@ -23,8 +23,8 @@ namespace Sakura
 		virtual void Bind() = 0;
 		virtual void Unbind() = 0;
 
-		virtual VertexLayout& GetLayout() = 0;
+		virtual const VertexLayout& GetLayout() const = 0;
 
-		static std::shared_ptr<Shader> Create(const ShaderSpecification& spec, const GraphicsContext& context);
+		static std::shared_ptr<Shader> Create(const ShaderSpecification& spec, GraphicsContext& context);
 	};
 }

@@ -11,16 +11,16 @@ namespace Sakura
 	class DirectXIndexBuffer : public IndexBuffer
 	{
 	public:
-		DirectXIndexBuffer(const IndexBufferSpecification& spec, const DirectXContext& context);
+		DirectXIndexBuffer(const IndexBufferSpecification& spec, DirectXContext& context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
 
-		virtual uint16 GetCount() override { return m_Spec.Count; }
+		virtual uint16 GetCount() const override { return m_Spec.Count; }
 
 	private:
 		IndexBufferSpecification m_Spec;
-		const DirectXContext& m_Context;
+		DirectXContext& m_Context;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> m_Buffer;
 	};
 }

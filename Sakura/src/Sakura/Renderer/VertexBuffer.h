@@ -23,12 +23,10 @@ namespace Sakura
 		virtual void Bind() = 0;
 		virtual void Unbind() = 0;
 
-		virtual void SetData(const void* data, uint32 size) = 0;
-
+		virtual const VertexLayout& GetLayout() const = 0;
 		virtual void SetLayout(VertexLayout& layout) = 0;
-		virtual VertexLayout& GetLayout() = 0;
 
-		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, const GraphicsContext& context);
+		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, GraphicsContext& context);
 	};
 }
 

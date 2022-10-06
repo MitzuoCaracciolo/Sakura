@@ -11,19 +11,17 @@ namespace Sakura
 	class DirectXVertexBuffer : public VertexBuffer
 	{
 	public:
-		DirectXVertexBuffer(const VertexBufferSpecification& spec, const DirectXContext& context);
+		DirectXVertexBuffer(const VertexBufferSpecification& spec, DirectXContext& context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
 
-		virtual void SetData(const void* data, uint32 byteSize) override;
-
+		virtual const VertexLayout& GetLayout() const override { return m_Spec.Layout; }
 		virtual void SetLayout(VertexLayout& layout) override;
-		virtual VertexLayout& GetLayout() override { return m_Spec.Layout; }
 
 	private:
 		VertexBufferSpecification m_Spec;
-		const DirectXContext& m_Context;
+		DirectXContext& m_Context;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> m_Buffer;
 	};
 }

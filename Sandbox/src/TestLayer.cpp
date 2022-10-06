@@ -1,7 +1,7 @@
 #include "TestLayer.h"
 
-TestLayer::TestLayer(Sakura::GraphicsContext& context)
-	: m_Context(context)
+TestLayer::TestLayer(Sakura::Window& window)
+	: m_Window(window)
 {
 }
 
@@ -26,31 +26,33 @@ void TestLayer::OnAttach()
 		{ 0.0f, 0.0f, 0.0f, 1.0f } 
 	};
 
+	auto& graphics = m_Window.GetContext();
+
 	Sakura::VertexBufferSpecification vBufferSpec;
 	vBufferSpec.Data = vertices;
 	vBufferSpec.Size = sizeof(vertices);
 	vBufferSpec.Layout = { { "POSITION", Sakura::LayoutType::Float2D } };
 
-	m_VertexBuffer = Sakura::VertexBuffer::Create(vBufferSpec, m_Context);
+	m_VertexBuffer = Sakura::VertexBuffer::Create(vBufferSpec, graphics);
 
 	Sakura::IndexBufferSpecification iBufferSpec;
 	iBufferSpec.Data = indices;
 	iBufferSpec.Count = std::size(indices);
 
-	m_IndexBuffer = Sakura::IndexBuffer::Create(iBufferSpec, m_Context);
+	m_IndexBuffer = Sakura::IndexBuffer::Create(iBufferSpec, graphics);
 
 	Sakura::ConstantBufferSpecification cBufferSpec;
 	cBufferSpec.Data = model;
 	cBufferSpec.Size = sizeof(model);
 	cBufferSpec.Slot = 0;
 
-	m_ConstantBuffer = Sakura::ConstantBuffer::Create(cBufferSpec, m_Context);
+	m_ConstantBuffer = Sakura::ConstantBuffer::Create(cBufferSpec, graphics);
 
 	Sakura::ShaderSpecification shaderSpec;
 	shaderSpec.vShaderFilepath = "assets\\shaders\\VertexShader.hlsl";
 	shaderSpec.pShaderFilepath = "assets\\shaders\\PixelShader.hlsl";
 
-	m_Shader = Sakura::Shader::Create(shaderSpec, m_Context);
+	m_Shader = Sakura::Shader::Create(shaderSpec, graphics);
 }
 
 void TestLayer::OnDetach()
@@ -59,15 +61,17 @@ void TestLayer::OnDetach()
 
 void TestLayer::OnUpdate()
 {
-	m_Context.SetPrimitiveTopology();
+	auto& graphics = m_Window.GetContext();
+
+	graphics.SetPrimitiveTopology();
 
 	m_VertexBuffer->Bind();
 	m_IndexBuffer->Bind();
 	m_ConstantBuffer->Bind();
 	m_Shader->Bind();
 
-	m_Context.SetRenderTarget();
-	m_Context.Draw(m_IndexBuffer->GetCount());
+	graphics.SetRenderTarget();
+	graphics.Draw(m_IndexBuffer->GetCount());
 }
 
 void TestLayer::OnEvent(Sakura::Event& event)

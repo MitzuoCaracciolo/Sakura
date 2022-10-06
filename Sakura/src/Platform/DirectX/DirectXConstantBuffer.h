@@ -11,16 +11,14 @@ namespace Sakura
 	class DirectXConstantBuffer : public ConstantBuffer
 	{
 	public:
-		DirectXConstantBuffer(const ConstantBufferSpecification& spec, const DirectXContext& context);
+		DirectXConstantBuffer(const ConstantBufferSpecification& spec, DirectXContext& context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
 
 		virtual void Update(const void* data, uint32 size, uint32 offset) override;
 
-		virtual const void* GetData() override { return m_Spec.Data; }
-		virtual uint32 GetSize() override { return m_Spec.Size; }
-		virtual uint32 GetSlot() override { return m_Spec.Slot; }
+		virtual uint32 GetSlot() const override { return m_Spec.Slot; }
 
 	private:
 		ConstantBufferSpecification m_Spec;
