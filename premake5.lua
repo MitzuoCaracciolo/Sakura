@@ -30,13 +30,16 @@ project "Sakura"
 		"%{prj.name}/src/skpch.h",
 		"%{prj.name}/src/skpch.cpp",
 		"%{prj.name}/src/Sakura/**.h",
-		"%{prj.name}/src/Sakura/**.cpp"
+		"%{prj.name}/src/Sakura/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp"
 	}
 
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/stb_image"
 	}
 
 	links

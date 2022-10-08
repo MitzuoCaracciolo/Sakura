@@ -17,6 +17,7 @@ private:
 	std::shared_ptr<Sakura::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Sakura::IndexBuffer> m_IndexBuffer;
 	std::shared_ptr<Sakura::ConstantBuffer> m_ConstantBuffer;
+	std::shared_ptr<Sakura::Texture> m_Texture;
 	std::shared_ptr<Sakura::Shader> m_Shader;
 };
 

@@ -8,10 +8,10 @@ TestLayer::TestLayer(Sakura::Window& window)
 void TestLayer::OnAttach()
 {
 	float vertices[] = {
-		 -0.5f,  0.5f,
-		  0.5f,  0.5f,
-		  0.5f, -0.5f,
-		 -0.5f, -0.5f
+		 -0.5f,  0.5f, 0.0f, 0.0f,
+		  0.5f,  0.5f, 1.0f, 0.0f,
+		  0.5f, -0.5f, 1.0f, 1.0f,
+		 -0.5f, -0.5f, 0.0f, 1.0f
 	};
 
 	uint16_t indices[] = {
@@ -20,8 +20,8 @@ void TestLayer::OnAttach()
 	};
 
 	float model[4][4] = {
-		{ 1.0f, 0.0f, 0.0f, 0.5f },
-		{ 0.0f, 1.0f, 0.0f, 0.5f },
+		{ 1.0f, 0.0f, 0.0f, 0.0f },
+		{ 0.0f, 1.0f, 0.0f, 0.0f },
 		{ 0.0f, 0.0f, 1.0f, 0.0f },
 		{ 0.0f, 0.0f, 0.0f, 1.0f } 
 	};
@@ -31,7 +31,7 @@ void TestLayer::OnAttach()
 	Sakura::VertexBufferSpecification vBufferSpec;
 	vBufferSpec.Data = vertices;
 	vBufferSpec.Size = sizeof(vertices);
-	vBufferSpec.Layout = { { "POSITION", Sakura::LayoutType::Float2D } };
+	vBufferSpec.Layout = { { "Position", Sakura::LayoutType::Float2D }, { "TextCood", Sakura::LayoutType::Float2D } };
 
 	m_VertexBuffer = Sakura::VertexBuffer::Create(vBufferSpec, graphics);
 
@@ -47,6 +47,12 @@ void TestLayer::OnAttach()
 	cBufferSpec.Slot = 0;
 
 	m_ConstantBuffer = Sakura::ConstantBuffer::Create(cBufferSpec, graphics);
+
+	Sakura::TextureSpecification texSpec;
+	texSpec.TexturePath = "assets\\images\\nier_automata.jpeg";
+	texSpec.Slot = 0;
+
+	m_Texture = Sakura::Texture::Create(texSpec, graphics);
 
 	Sakura::ShaderSpecification shaderSpec;
 	shaderSpec.vShaderFilepath = "assets\\shaders\\VertexShader.hlsl";
@@ -68,6 +74,7 @@ void TestLayer::OnUpdate()
 	m_VertexBuffer->Bind();
 	m_IndexBuffer->Bind();
 	m_ConstantBuffer->Bind();
+	m_Texture->Bind();
 	m_Shader->Bind();
 
 	graphics.SetRenderTarget();

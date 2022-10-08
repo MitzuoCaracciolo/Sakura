@@ -33,6 +33,7 @@ namespace Sakura
 		friend class DirectXIndexBuffer;
 		friend class DirectXConstantBuffer;
 		friend class DirectXShader;
+		friend class DirectXTexture;
 	};
 }
 
