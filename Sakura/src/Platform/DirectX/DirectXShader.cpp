@@ -7,12 +7,12 @@
 
 namespace Sakura
 {
-	std::shared_ptr<Shader> Shader::Create(const ShaderSpecification& spec, RendererContext& context)
+	std::shared_ptr<Shader> Shader::Create(const ShaderSpecification& spec, std::shared_ptr<RendererContext> context)
 	{
-		return std::make_shared<DirectXShader>(spec, dynamic_cast<DirectXContext&>(context));
+		return std::make_shared<DirectXShader>(spec, std::static_pointer_cast<DirectXContext>(context));
 	}
 
-	DirectXShader::DirectXShader(const ShaderSpecification& spec, DirectXContext& context)
+	DirectXShader::DirectXShader(const ShaderSpecification& spec, std::shared_ptr<DirectXContext> context)
 		: m_Spec(spec), m_Context(context)
 	{
         std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
@@ -35,16 +35,16 @@ namespace Sakura
             return;
         }
 
-        m_Context.m_Device->CreateVertexShader(vBlob->GetBufferPointer(), vBlob->GetBufferSize(), 0, &m_VShader);
-        CreateInputLayoutFromVertexShader(vBlob.Get(), context.m_Device.Get(), &m_InputLayout);
-        m_Context.m_Device->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), 0, &m_PShader);
+        m_Context->m_Device->CreateVertexShader(vBlob->GetBufferPointer(), vBlob->GetBufferSize(), 0, &m_VShader);
+        CreateInputLayoutFromVertexShader(vBlob.Get(), context->m_Device.Get(), &m_InputLayout);
+        m_Context->m_Device->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), 0, &m_PShader);
 	}
 
 	void DirectXShader::Bind()
 	{
-        m_Context.m_DeviceContext->IASetInputLayout(m_InputLayout.Get());
-        m_Context.m_DeviceContext->VSSetShader(m_VShader.Get(), 0, 0);
-        m_Context.m_DeviceContext->PSSetShader(m_PShader.Get(), 0, 0);
+        m_Context->m_DeviceContext->IASetInputLayout(m_InputLayout.Get());
+        m_Context->m_DeviceContext->VSSetShader(m_VShader.Get(), 0, 0);
+        m_Context->m_DeviceContext->PSSetShader(m_PShader.Get(), 0, 0);
 	}
 
 	void DirectXShader::Unbind()

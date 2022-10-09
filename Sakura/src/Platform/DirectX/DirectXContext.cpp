@@ -3,7 +3,7 @@
 
 namespace Sakura
 {
-	std::unique_ptr<RendererContext> RendererContext::Create(const RendererContextSpecification& spec)
+	std::shared_ptr<RendererContext> RendererContext::Create(const RendererContextSpecification& spec)
 	{
 		return std::make_unique<DirectXContext>(spec);
 	}

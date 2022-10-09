@@ -3,12 +3,12 @@
 
 namespace Sakura
 {
-	std::shared_ptr<IndexBuffer> IndexBuffer::Create(const IndexBufferSpecification& spec, RendererContext& context)
+	std::shared_ptr<IndexBuffer> IndexBuffer::Create(const IndexBufferSpecification& spec, std::shared_ptr<RendererContext> context)
 	{
-		return std::make_shared<DirectXIndexBuffer>(spec, dynamic_cast<DirectXContext&>(context));
+		return std::make_shared<DirectXIndexBuffer>(spec, std::static_pointer_cast<DirectXContext>(context));
 	}
 
-	DirectXIndexBuffer::DirectXIndexBuffer(const IndexBufferSpecification& spec, DirectXContext& context)
+	DirectXIndexBuffer::DirectXIndexBuffer(const IndexBufferSpecification& spec, std::shared_ptr<DirectXContext> context)
 		: m_Spec(spec), m_Context(context)
 	{
 		D3D11_BUFFER_DESC IndexBufferDesc = { };
@@ -23,12 +23,12 @@ namespace Sakura
 		IndexData.SysMemPitch = 0;
 		IndexData.SysMemSlicePitch = 0;
 
-		context.m_Device->CreateBuffer(&IndexBufferDesc, &IndexData, &m_Buffer);
+		m_Context->m_Device->CreateBuffer(&IndexBufferDesc, &IndexData, &m_Buffer);
 	}
 
 	void DirectXIndexBuffer::Bind()
 	{
-		m_Context.m_DeviceContext->IASetIndexBuffer(m_Buffer.Get(), DXGI_FORMAT_R16_UINT, 0);
+		m_Context->m_DeviceContext->IASetIndexBuffer(m_Buffer.Get(), DXGI_FORMAT_R16_UINT, 0);
 	}
 
 	void DirectXIndexBuffer::Unbind()

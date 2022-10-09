@@ -4,7 +4,7 @@
 class TestLayer : public Sakura::Layer
 {
 public:
-	TestLayer(Sakura::Window& context);
+	TestLayer(std::shared_ptr<Sakura::Window> context);
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
@@ -12,7 +12,7 @@ public:
 	virtual void OnEvent(Sakura::Event& event) override;
 
 private:
-	Sakura::Window& m_Window;
+	std::shared_ptr<Sakura::Window> m_Window;
 
 	std::shared_ptr<Sakura::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Sakura::IndexBuffer> m_IndexBuffer;

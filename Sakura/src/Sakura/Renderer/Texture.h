@@ -27,6 +27,6 @@ namespace Sakura
 		virtual uint32 GetWidth() const = 0;
 		virtual uint32 GetHeight() const = 0;
 
-		static std::shared_ptr<Texture> Create(const TextureSpecification& spec, RendererContext& context);
+		static std::shared_ptr<Texture> Create(const TextureSpecification& spec, std::shared_ptr<RendererContext> context);
 	};
 }

@@ -12,7 +12,7 @@ namespace Sakura
 	class DirectXShader : public Shader
 	{
 	public:
-		DirectXShader(const ShaderSpecification& spec, DirectXContext& context);
+		DirectXShader(const ShaderSpecification& spec, std::shared_ptr<DirectXContext> context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
@@ -28,7 +28,7 @@ namespace Sakura
 	private:
 		VertexLayout m_Layout;
 		ShaderSpecification m_Spec;
-		DirectXContext& m_Context;
+		std::shared_ptr<DirectXContext> m_Context;
 		Microsoft::WRL::ComPtr<ID3D11VertexShader> m_VShader;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> m_PShader;
 		Microsoft::WRL::ComPtr<ID3D11InputLayout> m_InputLayout;

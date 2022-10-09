@@ -25,6 +25,6 @@ namespace Sakura
 
 		virtual const VertexLayout& GetLayout() const = 0;
 
-		static std::shared_ptr<Shader> Create(const ShaderSpecification& spec, RendererContext& context);
+		static std::shared_ptr<Shader> Create(const ShaderSpecification& spec, std::shared_ptr<RendererContext> context);
 	};
 }

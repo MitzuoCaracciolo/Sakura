@@ -3,12 +3,12 @@
 
 namespace Sakura
 {
-	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, RendererContext& context)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(const VertexBufferSpecification& spec, std::shared_ptr<RendererContext> context)
 	{
-		return std::make_shared<DirectXVertexBuffer>(spec, dynamic_cast<DirectXContext&>(context));
+		return std::make_shared<DirectXVertexBuffer>(spec, std::static_pointer_cast<DirectXContext>(context));
 	}
 
-	DirectXVertexBuffer::DirectXVertexBuffer(const VertexBufferSpecification& spec, DirectXContext& context)
+	DirectXVertexBuffer::DirectXVertexBuffer(const VertexBufferSpecification& spec, std::shared_ptr<DirectXContext> context)
 		: m_Spec(spec), m_Context(context)
 	{
 		D3D11_BUFFER_DESC VertexBufferDesc = { };
@@ -23,14 +23,14 @@ namespace Sakura
 		VertexData.SysMemPitch = 0;
 		VertexData.SysMemSlicePitch = 0;
 
-		m_Context.m_Device->CreateBuffer(&VertexBufferDesc, &VertexData, &m_Buffer);
+		m_Context->m_Device->CreateBuffer(&VertexBufferDesc, &VertexData, &m_Buffer);
 	}
 
 	void DirectXVertexBuffer::Bind()
 	{
 		UINT stride = m_Spec.Layout.GetStride();
 		UINT offset = 0;
-		m_Context.m_DeviceContext->IASetVertexBuffers(0, 1, m_Buffer.GetAddressOf(), &stride, &offset);
+		m_Context->m_DeviceContext->IASetVertexBuffers(0, 1, m_Buffer.GetAddressOf(), &stride, &offset);
 	}
 
 	void DirectXVertexBuffer::Unbind()

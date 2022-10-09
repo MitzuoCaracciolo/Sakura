@@ -17,7 +17,7 @@ namespace Sakura
 		virtual uint32 GetWidth() const override { return m_Spec.Width; }
 		virtual uint32 GetHeight() const override { return m_Spec.Height; }
 
-		virtual RendererContext& GetContext() override { return *m_Context.get(); }
+		virtual std::shared_ptr<RendererContext> GetContext() override { return m_Context; }
 
 		virtual void* GetNativeWindow() override { return (void*)m_Handle; }
 
@@ -33,6 +33,6 @@ namespace Sakura
 		HWND m_Handle;
 		WindowSpecification m_Spec;
 		EventCallbackFn m_EventCallback;
-		std::unique_ptr<RendererContext> m_Context;
+		std::shared_ptr<RendererContext> m_Context;
 	};
 }

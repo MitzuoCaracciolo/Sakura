@@ -26,7 +26,7 @@ namespace Sakura
 		virtual const VertexLayout& GetLayout() const = 0;
 		virtual void SetLayout(VertexLayout& layout) = 0;
 
-		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, RendererContext& context);
+		static std::shared_ptr<VertexBuffer> Create(const VertexBufferSpecification& spec, std::shared_ptr<RendererContext> context);
 	};
 }
 

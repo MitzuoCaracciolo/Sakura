@@ -5,12 +5,12 @@
 
 namespace Sakura
 {
-	std::shared_ptr<Texture> Texture::Create(const TextureSpecification& spec, RendererContext& context)
+	std::shared_ptr<Texture> Texture::Create(const TextureSpecification& spec, std::shared_ptr<RendererContext> context)
 	{
-		return std::make_shared<DirectXTexture>(spec, dynamic_cast<DirectXContext&>(context));
+		return std::make_shared<DirectXTexture>(spec, std::static_pointer_cast<DirectXContext>(context));
 	}
 
-	DirectXTexture::DirectXTexture(const TextureSpecification& spec, DirectXContext& context)
+	DirectXTexture::DirectXTexture(const TextureSpecification& spec, std::shared_ptr<DirectXContext> context)
 		: m_Spec(spec), m_Context(context)
 	{
 		int width, height, channels;
@@ -38,7 +38,7 @@ namespace Sakura
 		textureData.SysMemSlicePitch = 0;
 
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture;
-		m_Context.m_Device->CreateTexture2D(&textureDesc, &textureData, &Texture);
+		m_Context->m_Device->CreateTexture2D(&textureDesc, &textureData, &Texture);
 
 		//stbi_image_free(data);
 
@@ -49,7 +49,7 @@ namespace Sakura
 		srvDesc.Texture2D.MostDetailedMip = 0;
 		srvDesc.Texture2D.MipLevels = -1;
 
-		m_Context.m_Device->CreateShaderResourceView(Texture.Get(), &srvDesc, &m_TextureView);
+		m_Context->m_Device->CreateShaderResourceView(Texture.Get(), &srvDesc, &m_TextureView);
 
 		D3D11_SAMPLER_DESC samplerDesc = {};
 		samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -57,13 +57,13 @@ namespace Sakura
 		samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
-		m_Context.m_Device->CreateSamplerState(&samplerDesc, &m_Sampler);
+		m_Context->m_Device->CreateSamplerState(&samplerDesc, &m_Sampler);
 	}
 
 	void DirectXTexture::Bind()
 	{
-		m_Context.m_DeviceContext->PSSetShaderResources(m_Spec.Slot, 1, m_TextureView.GetAddressOf());
-		m_Context.m_DeviceContext->PSSetSamplers(m_Spec.Slot, 1, m_Sampler.GetAddressOf());
+		m_Context->m_DeviceContext->PSSetShaderResources(m_Spec.Slot, 1, m_TextureView.GetAddressOf());
+		m_Context->m_DeviceContext->PSSetSamplers(m_Spec.Slot, 1, m_Sampler.GetAddressOf());
 	}
 
 	void DirectXTexture::Unbind()

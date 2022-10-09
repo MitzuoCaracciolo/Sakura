@@ -6,7 +6,7 @@
 
 namespace Sakura
 {
-	std::unique_ptr<Window> Window::Create(const WindowSpecification& spec)
+	std::shared_ptr<Window> Window::Create(const WindowSpecification& spec)
 	{
 		return std::make_unique<Win32Window>(spec);
 	}

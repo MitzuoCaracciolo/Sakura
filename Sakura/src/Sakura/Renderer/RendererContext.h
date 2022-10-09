@@ -24,7 +24,7 @@ namespace Sakura
 		virtual void SetPrimitiveTopology() = 0;
 		virtual void Draw(uint16 count) = 0;
 
-		static std::unique_ptr<RendererContext> Create(const RendererContextSpecification& spec);
+		static std::shared_ptr<RendererContext> Create(const RendererContextSpecification& spec);
 	};
 }
 

@@ -1,6 +1,6 @@
 #include "TestLayer.h"
 
-TestLayer::TestLayer(Sakura::Window& window)
+TestLayer::TestLayer(std::shared_ptr<Sakura::Window> window)
 	: m_Window(window)
 {
 }
@@ -26,7 +26,7 @@ void TestLayer::OnAttach()
 		{ 0.0f, 0.0f, 0.0f, 1.0f } 
 	};
 
-	auto& graphics = m_Window.GetContext();
+	auto graphics = m_Window->GetContext();
 
 	Sakura::VertexBufferSpecification vBufferSpec;
 	vBufferSpec.Data = vertices;
@@ -67,9 +67,9 @@ void TestLayer::OnDetach()
 
 void TestLayer::OnUpdate()
 {
-	auto& graphics = m_Window.GetContext();
+	auto graphics = m_Window->GetContext();
 
-	graphics.SetPrimitiveTopology();
+	graphics->SetPrimitiveTopology();
 
 	m_VertexBuffer->Bind();
 	m_IndexBuffer->Bind();
@@ -77,8 +77,8 @@ void TestLayer::OnUpdate()
 	m_Texture->Bind();
 	m_Shader->Bind();
 
-	graphics.SetRenderTarget();
-	graphics.Draw(m_IndexBuffer->GetCount());
+	graphics->SetRenderTarget();
+	graphics->Draw(m_IndexBuffer->GetCount());
 }
 
 void TestLayer::OnEvent(Sakura::Event& event)

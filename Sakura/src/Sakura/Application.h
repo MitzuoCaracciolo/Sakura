@@ -40,7 +40,7 @@ namespace Sakura
 			PushOverlay(std::move(overlay));
 		}
 
-		Window& GetWindow() { return *m_Window.get(); }
+		std::shared_ptr<Window> GetWindow() { return m_Window; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
@@ -48,7 +48,7 @@ namespace Sakura
 	private:
 		bool m_Running;
 		LayerStack m_LayerStack;
-		std::unique_ptr<Window> m_Window;
+		std::shared_ptr<Window> m_Window;
 	};
 
 	// Client-Side

@@ -26,6 +26,6 @@ namespace Sakura
 
 		virtual uint32 GetSlot() const = 0;
 
-		static std::shared_ptr<ConstantBuffer> Create(const ConstantBufferSpecification& spec, RendererContext& context);
+		static std::shared_ptr<ConstantBuffer> Create(const ConstantBufferSpecification& spec, std::shared_ptr<RendererContext> context);
 	};
 }

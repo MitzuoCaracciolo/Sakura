@@ -11,7 +11,7 @@ namespace Sakura
 	class DirectXConstantBuffer : public ConstantBuffer
 	{
 	public:
-		DirectXConstantBuffer(const ConstantBufferSpecification& spec, DirectXContext& context);
+		DirectXConstantBuffer(const ConstantBufferSpecification& spec, std::shared_ptr<DirectXContext> context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
@@ -22,7 +22,7 @@ namespace Sakura
 
 	private:
 		ConstantBufferSpecification m_Spec;
-		const DirectXContext& m_Context;
+		std::shared_ptr<DirectXContext> m_Context;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> m_Buffer;
 	};
 }

@@ -11,7 +11,7 @@ namespace Sakura
 	class DirectXTexture : public Texture
 	{
 	public:
-		DirectXTexture(const TextureSpecification& spec, DirectXContext& context);
+		DirectXTexture(const TextureSpecification& spec, std::shared_ptr<DirectXContext> context);
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
@@ -24,7 +24,7 @@ namespace Sakura
 		TextureSpecification m_Spec;
 		uint32 m_Width;
 		uint32 m_Height;
-		DirectXContext& m_Context;
+		std::shared_ptr<DirectXContext> m_Context;
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_TextureView;
 		Microsoft::WRL::ComPtr<ID3D11SamplerState> m_Sampler;
 	};

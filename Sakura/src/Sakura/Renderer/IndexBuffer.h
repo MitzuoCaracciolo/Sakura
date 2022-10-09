@@ -21,7 +21,7 @@ namespace Sakura
 
 		virtual uint16 GetCount() const = 0;
 
-		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, RendererContext& context);
+		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, std::shared_ptr<RendererContext> context);
 	};
 
 }
