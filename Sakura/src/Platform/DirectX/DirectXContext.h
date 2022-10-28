@@ -18,7 +18,7 @@ namespace Sakura
 		virtual void SwapBackBuffer() override;
 		virtual void SetRenderTarget() override;
 		virtual void SetPrimitiveTopology() override;
-		virtual void Draw(uint16 count) override;
+		virtual void Draw(uint32_t count, uint32_t baseIndex, uint32_t baseVertex) override;
 
 	private:
 		uint32 m_ViewportWidth;
@@ -28,6 +28,8 @@ namespace Sakura
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_DeviceContext;
 		Microsoft::WRL::ComPtr<IDXGISwapChain> m_SwapChain;
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_BackBuffer;
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DepthStencilView;
+		Microsoft::WRL::ComPtr<ID3D11DepthStencilState> m_DepthStencilState;
 
 		friend class DirectXVertexBuffer;
 		friend class DirectXIndexBuffer;

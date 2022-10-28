@@ -13,6 +13,7 @@ namespace Sakura
 	{
 		std::string vShaderFilepath;
 		std::string pShaderFilepath;
+		VertexLayout Layout;
 	};
 
 	class Shader

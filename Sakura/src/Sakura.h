@@ -11,5 +11,7 @@
 #include "Sakura/Renderer/ConstantBuffer.h"
 #include "Sakura/Renderer/Texture.h"
 #include "Sakura/Renderer/Shader.h"
+#include "Sakura/Renderer/Mesh.h"
+#include "Sakura/Renderer/SceneRenderer.h"
 
 #include "Sakura/Application.h"

@@ -31,15 +31,17 @@ project "Sakura"
 		"%{prj.name}/src/skpch.cpp",
 		"%{prj.name}/src/Sakura/**.h",
 		"%{prj.name}/src/Sakura/**.cpp",
-		"%{prj.name}/vendor/stb_image/**.h",
-		"%{prj.name}/vendor/stb_image/**.cpp"
+		"%{prj.name}/vendor/stb/**.h",
+		"%{prj.name}/vendor/stb/**.cpp"
 	}
 
 	includedirs
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/vendor/stb_image"
+		"%{prj.name}/vendor/stb/include",
+		"%{prj.name}/vendor/assimp/include",
+		"%{prj.name}/vendor/glm/include"
 	}
 
 	links
@@ -48,6 +50,20 @@ project "Sakura"
 		"d3dcompiler.lib",
 		"dxguid.lib"
 	}
+
+	filter "configurations:Debug"
+
+		links
+		{
+			"%{wks.location}/Sakura/vendor/assimp/bin/Debug/assimp-vc143-mtd.lib"
+		}
+
+	filter "configurations:Release"
+
+		links
+		{
+			"%{wks.location}/Sakura/vendor/assimp/bin/Release/assimp-vc143-mtd.lib"
+		}
 
 	filter "system:windows"
 		systemversion "latest"
@@ -86,6 +102,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Sakura/vendor/spdlog/include",
+		"Sakura/vendor/assimp/include",
+		"Sakura/vendor/glm/include",
 		"Sakura/src"
 	}
 
@@ -93,6 +111,20 @@ project "Sandbox"
 	{
 		"Sakura"
 	}
+
+	filter "configurations:Debug"
+
+		postbuildcommands 
+		{
+			'{COPY} "../Sakura/vendor/assimp/bin/Debug/assimp-vc143-mtd.dll" "%{cfg.targetdir}"'
+		}
+
+	filter "configurations:Release"
+
+		postbuildcommands 
+		{
+			'{COPY} "../Sakura/vendor/assimp/bin/Release/assimp-vc143-mtd.dll" "%{cfg.targetdir}"'
+		}
 
 	filter "system:windows"
 		systemversion "latest"

@@ -7,8 +7,8 @@ namespace Sakura
 {
 	struct IndexBufferSpecification
 	{
-		uint16* Data;
-		uint16 Count;
+		void* Data;
+		uint32_t Count;
 	};
 
 	class IndexBuffer
@@ -19,7 +19,7 @@ namespace Sakura
 		virtual void Bind() = 0;
 		virtual void Unbind() = 0;
 
-		virtual uint16 GetCount() const = 0;
+		virtual uint32_t GetCount() const = 0;
 
 		static std::shared_ptr<IndexBuffer> Create(const IndexBufferSpecification& spec, std::shared_ptr<RendererContext> context);
 	};

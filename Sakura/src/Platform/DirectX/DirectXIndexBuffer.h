@@ -16,7 +16,7 @@ namespace Sakura
 		virtual void Bind() override;
 		virtual void Unbind() override;
 
-		virtual uint16 GetCount() const override { return m_Spec.Count; }
+		virtual uint32_t GetCount() const override { return m_Spec.Count; }
 
 	private:
 		IndexBufferSpecification m_Spec;

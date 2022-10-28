@@ -22,7 +22,7 @@ namespace Sakura
 		virtual void SwapBackBuffer() = 0;
 		virtual void SetRenderTarget() = 0;
 		virtual void SetPrimitiveTopology() = 0;
-		virtual void Draw(uint16 count) = 0;
+		virtual void Draw(uint32_t count, uint32_t baseIndex, uint32_t baseVertex) = 0;
 
 		static std::shared_ptr<RendererContext> Create(const RendererContextSpecification& spec);
 	};

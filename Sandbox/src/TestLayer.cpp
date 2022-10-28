@@ -14,7 +14,7 @@ void TestLayer::OnAttach()
 		 -0.5f, -0.5f, 0.0f, 1.0f
 	};
 
-	uint16_t indices[] = {
+	uint32_t indices[] = {
 		0, 1, 2,
 		2, 3, 0
 	};
@@ -78,7 +78,7 @@ void TestLayer::OnUpdate()
 	m_Shader->Bind();
 
 	graphics->SetRenderTarget();
-	graphics->Draw(m_IndexBuffer->GetCount());
+	graphics->Draw(m_IndexBuffer->GetCount(), 0, 0);
 }
 
 void TestLayer::OnEvent(Sakura::Event& event)
